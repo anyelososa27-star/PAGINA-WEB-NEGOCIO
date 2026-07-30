@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo Sosa Rental Car | Alquiler de Vehículos en El Salvador</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fdfbf0',
+                            100: '#fbf4d6',
+                            200: '#f5e5a2',
+                            300: '#edd169',
+                            400: '#e4b63a',
+                            500: '#d4af37', // Dorado principal
+                            600: '#aa8c2c',
+                            700: '#8c7023',
+                            800: '#6f561e',
+                            900: '#523f18',
+                        },
+                        dark: {
+                            DEFAULT: '#121212',
+                            card: '#1a1a1a',
+                            deep: '#0b0b0b',
+                            border: '#2a2a2a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif !important;
+            line-height: 1.5;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Personalización de la barra de desplazamiento */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0b0b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #aa8c2c;
+        }
+
+        /* Efectos visuales */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(30deg);
+            transition: none;
+        }
+        .btn-shine:hover::after {
+            left: 120%;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .glass-header {
+            background: rgba(18, 18, 18, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-dark text-white overflow-x-hidden antialiased">
+
+    <header class="glass-header sticky top-0 z-50 border-b-2 border-gold-500 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#inicio" class="flex flex-col">
+                    <span class="text-xl sm:text-2xl font-extrabold tracking-wider text-white">
+                        GRUPO SOSA <span class="text-gold-500 font-bold text-lg sm:text-xl block sm:inline sm:ml-1">RENTAL CAR</span>
+                    </span>
+                    <span class="text-[9px] tracking-widest text-gray-400 uppercase">Seguridad y Confort en El Salvador</span>
+                </a>
+
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-sm font-semibold text-gray-200 hover:text-gold-500 transition-all duration-300 border-b-2 border-transparent hover:border-gold-500 py-1">Inicio</a>
+                    <a href="#flota" class="text-sm font-semibold text-gray-200 hover:text-gold-500 transition-all duration-300 border-b-2 border-transparent hover:border-gold-500 py-1">Nuestra Flota</a>
+                    <a href="#calculadora" class="text-sm font-semibold text-gray-200 hover:text-gold-500 transition-all duration-300 border-b-2 border-transparent hover:border-gold-500 py-1">Cotizador Exprés</a>
+                    <a href="#requisitos" class="text-sm font-semibold text-gray-200 hover:text-gold-500 transition-all duration-300 border-b-2 border-transparent hover:border-gold-500 py-1">Requisitos</a>
+                    <a href="#contacto" class="text-sm font-semibold text-gray-200 hover:text-gold-500 transition-all duration-300 border-b-2 border-transparent hover:border-gold-500 py-1">Contacto</a>
+                </nav>
+
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="#calculadora" class="btn-shine bg-gold-500 font-extrabold text-sm px-4 py-2.5 rounded-lg shadow-lg hover:bg-gold-600 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 text-black">
+                        <i class="fa-solid fa-calculator text-base"></i> Cotizar Ahora
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-dark-card focus:outline-none transition-colors duration-200" aria-label="Abrir menú">
+                    <i id="burger-icon" class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-card border-b border-dark-border px-4 pt-2 pb-6 space-y-2 transition-all duration-300 shadow-2xl">
+            <a href="#inicio" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-gray-200 hover:bg-gold-500 hover:text-black transition-all">Inicio</a>
+            <a href="#flota" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-gray-200 hover:bg-gold-500 hover:text-black transition-all">Nuestra Flota</a>
+            <a href="#calculadora" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-gray-200 hover:bg-gold-500 hover:text-black transition-all">Cotizador Exprés</a>
+            <a href="#requisitos" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-gray-200 hover:bg-gold-500 hover:text-black transition-all">Requisitos</a>
+            <a href="#contacto" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-gray-200 hover:bg-gold-500 hover:text-black transition-all">Contacto</a>
+            <div class="pt-4 border-t border-dark-border space-y-2">
+                <a href="https://www.instagram.com/rentalcarsosa?utm_source=qr&igsh=YTV4b2d3Mms1NXNs" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-dark border border-gold-500/50 text-gold-500 font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-gold-500 hover:text-black transition-all">
+                    <i class="fa-brands fa-instagram text-xl"></i> Síguenos en Instagram
+                </a>
+                <a href="https://wa.me/50376971000?text=Hola,%20deseo%20alquilar%20un%20vehículo." target="_blank" class="w-full text-center bg-green-500 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-green-600 transition-colors">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Chatear con Asesor
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="inicio" class="relative min-h-[85vh] flex items-center justify-center bg-cover bg-center py-20 bg-dark-deep">
+        <div class="absolute inset-0 bg-gradient-to-b from-dark/90 via-dark-deep/95 to-dark"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/30 bg-gold-500/10 mb-6 animate-pulse">
+                <i class="fa-solid fa-crown text-gold-500 text-sm"></i>
+                <span class="text-xs font-bold text-gold-300 tracking-wider uppercase">Experiencia de Alquiler Premium</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                Renta de Vehículos <br class="hidden sm:inline">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-500 to-gold-700">
+                    Premium y Confiables
+                </span>
+            </h1>
+            
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-300 mb-10 font-light">
+                Descubre El Salvador con total libertad. Ofrecemos vehículos modernos, confort de primer nivel y tarifas transparentes sin sorpresas de última hora.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#flota" class="btn-shine w-full sm:w-auto bg-gold-500 text-black font-black px-8 py-4 rounded-xl text-lg shadow-2xl hover:bg-gold-400 hover:-translate-y-1 transition-all duration-300">
+                    <i class="fa-solid fa-car mr-2"></i> Ver Flota
+                </a>
+                <a href="#calculadora" class="w-full sm:w-auto bg-transparent border-2 border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-black font-bold px-8 py-4 rounded-xl text-lg transition-all duration-300">
+                    <i class="fa-solid fa-calculator mr-2"></i> Cotizador Exprés
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto border-t border-dark-border/40 pt-10">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-dark-card rounded-full border border-gold-500/30 flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-shield-halved text-gold-500 text-xl"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Seguridad Total</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-dark-card rounded-full border border-gold-500/30 flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-handshake text-gold-500 text-xl"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Trato Transparente</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-dark-card rounded-full border border-gold-500/30 flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-headset text-gold-500 text-xl"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Atención 24/7</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-dark-card rounded-full border border-gold-500/30 flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-plane-arrival text-gold-500 text-xl"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Entrega en Aeropuerto</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="flota" class="py-24 bg-dark-deep relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
+                    Nuestra <span class="text-gold-500">Flota Exclusiva</span>
+                </h2>
+                <div class="w-24 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-400 mt-4 text-base sm:text-lg font-light">
+                    Explora nuestra amplia gama de vehículos limpios, higienizados y listos para cualquier aventura en ciudad, playa o montaña.
+                </p>
+            </div>
+
+            <!-- Barra de búsqueda y filtros -->
+            <div class="bg-dark-card border border-dark-border rounded-2xl p-6 mb-12 shadow-xl">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <div class="relative w-full md:w-80">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+                        </span>
+                        <input type="text" id="car-search" placeholder="Buscar vehículo (ej. BMW, Nissan)..." class="w-full pl-10 pr-4 py-3 bg-dark/50 border border-dark-border rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 transition-colors">
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 justify-center w-full md:w-auto">
+                        <button class="filter-btn active px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-gold-500 text-black" data-category="all">Todos</button>
+                        <button class="filter-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-dark border border-dark-border text-gray-300 hover:border-gold-500 hover:text-gold-500" data-category="premium">Premium</button>
+                        <button class="filter-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-dark border border-dark-border text-gray-300 hover:border-gold-500 hover:text-gold-500" data-category="suv">Camionetas / SUV</button>
+                        <button class="filter-btn px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-dark border border-dark-border text-gray-300 hover:border-gold-500 hover:text-gold-500" data-category="pickup">Pickups</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grilla de Vehículos -->
+            <div id="fleet-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <!-- Vehículo 1: BMW X3 -->
+                <div class="car-item group bg-dark-card border border-dark-border rounded-2xl overflow-hidden hover:border-gold-500 transition-all duration-300 flex flex-col justify-between shadow-lg" data-name="bmw x3 2017 4x4" data-category="premium suv" data-price="50">
+                    <div class="relative overflow-hidden h-64 group/carousel bg-dark-deep" id="carousel-car-1">
+                        <img id="img-car-1" src="imagenes/bmw-frente.jpeg" onerror="handleImageError(this, 'car-1')" alt="BMW X3 2017 4x4" class="w-full h-full object-cover transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-gold-500 text-black text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md z-10">Destacado Premium</span>
+                        <span id="badge-car-1" class="absolute top-4 right-4 bg-black/80 text-gold-500 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-md z-10 border border-gold-500/30">Frente</span>
+
+                        <button onclick="changeSlide('car-1', -1, event)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-gold-500 hover:text-black text-white flex items-center justify-center transition-all md:opacity-0 group-hover/carousel:opacity-100 z-10">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <button onclick="changeSlide('car-1', 1, event)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-gold-500 hover:text-black text-white flex items-center justify-center transition-all md:opacity-0 group-hover/carousel:opacity-100 z-10">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" id="dots-car-1">
+                            <span class="w-2.5 h-2.5 rounded-full bg-gold-500 cursor-pointer" onclick="goToSlide('car-1', 0, event)"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-white/40 cursor-pointer" onclick="goToSlide('car-1', 1, event)"></span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">BMW X3 2017 4x4</h3>
+                                <span class="text-xl font-extrabold text-gold-500">$50<span class="text-xs text-gray-400 font-normal">/día</span></span>
+                            </div>
+                            <p class="text-xs text-gray-400 mb-4">Color: Blanco | Transmisión: Automática</p>
+                            
+                            <ul class="space-y-2 mb-6">
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Tracción Integral 4x4</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Interior de Cuero Premium</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Bluetooth y Climatizador Bi-zona</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Capacidad: 5 pasajeros</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <button onclick="seleccionarAutoEnCalculadora('BMW X3 2017 4x4', 50)" class="w-full text-center bg-transparent border border-gold-500 text-gold-500 font-semibold py-2.5 rounded-lg hover:bg-gold-500 hover:text-black transition-all text-sm">
+                                <i class="fa-solid fa-calculator mr-1"></i> Cotizar este Auto
+                            </button>
+                            <a href="https://wa.me/50376971000?text=Hola!%20Deseo%20conocer%20la%20disponibilidad%20del%20BMW%20X3%202017%20($50/Día)%20en%20Grupo%20Sosa%20Rental%20Car." target="_blank" class="block text-center bg-green-500 text-white font-semibold py-2.5 rounded-lg hover:bg-green-600 transition-colors text-sm flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Reservar WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehículo 2: Ford Explorer -->
+                <div class="car-item group bg-dark-card border border-dark-border rounded-2xl overflow-hidden hover:border-gold-500 transition-all duration-300 flex flex-col justify-between shadow-lg" data-name="ford explorer 4x4" data-category="premium suv" data-price="65">
+                    <div class="relative overflow-hidden h-64 group/carousel bg-dark-deep" id="carousel-car-2">
+                        <img id="img-car-2" src="imagenes/explorer-frente.jpeg" onerror="handleImageError(this, 'car-2')" alt="Ford Explorer" class="w-full h-full object-cover transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-gold-500 text-black text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md z-10">Familiar Extragrande</span>
+                        <span id="badge-car-2" class="absolute top-4 right-4 bg-black/80 text-gold-500 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-md z-10 border border-gold-500/30">Frente</span>
+
+                        <button onclick="changeSlide('car-2', -1, event)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-gold-500 hover:text-black text-white flex items-center justify-center transition-all md:opacity-0 group-hover/carousel:opacity-100 z-10">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <button onclick="changeSlide('car-2', 1, event)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-gold-500 hover:text-black text-white flex items-center justify-center transition-all md:opacity-0 group-hover/carousel:opacity-100 z-10">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" id="dots-car-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-gold-500 cursor-pointer" onclick="goToSlide('car-2', 0, event)"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-white/40 cursor-pointer" onclick="goToSlide('car-2', 1, event)"></span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Ford Explorer 4x4</h3>
+                                <span class="text-xl font-extrabold text-gold-500">$65<span class="text-xs text-gray-400 font-normal">/día</span></span>
+                            </div>
+                            <p class="text-xs text-gray-400 mb-4">Color: Gris | Transmisión: Automática</p>
+                            
+                            <ul class="space-y-2 mb-6">
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> 3 filas de asientos (7 pasajeros)</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Potente motor con tracción 4WD</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Aire acondicionado triple zona</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Pantalla táctil y máxima seguridad</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <button onclick="seleccionarAutoEnCalculadora('Ford Explorer 4x4', 65)" class="w-full text-center bg-transparent border border-gold-500 text-gold-500 font-semibold py-2.5 rounded-lg hover:bg-gold-500 hover:text-black transition-all text-sm">
+                                <i class="fa-solid fa-calculator mr-1"></i> Cotizar este Auto
+                            </button>
+                            <a href="https://wa.me/50376971000?text=Hola!%20Deseo%20conocer%20la%20disponibilidad%20del%20Ford%20Explorer%20($65/Día)%20en%20Grupo%20Sosa%20Rental%20Car." target="_blank" class="block text-center bg-green-500 text-white font-semibold py-2.5 rounded-lg hover:bg-green-600 transition-colors text-sm flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Reservar WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehículo 3: Jeep Compass -->
+                <div class="car-item group bg-dark-card border border-dark-border rounded-2xl overflow-hidden hover:border-gold-500 transition-all duration-300 flex flex-col justify-between shadow-lg" data-name="jeep compass 2021" data-category="suv" data-price="50">
+                    <div class="relative overflow-hidden h-64 group/carousel bg-dark-deep" id="carousel-car-3">
+                        <img id="img-car-3" src="imagenes/jeep-interior.jpeg" onerror="handleImageError(this, 'car-3')" alt="Jeep Compass 2021" class="w-full h-full object-cover transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-gold-500 text-black text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md z-10">Confort Elegante</span>
+                        <span id="badge-car-3" class="absolute top-4 right-4 bg-black/80 text-gold-500 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-md z-10 border border-gold-500/30">Interior</span>
+
+                        <button onclick="changeSlide('car-3', -1, event)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-gold-500 hover:text-black text-white flex items-center justify-center transition-all md:opacity-0 group-hover/carousel:opacity-100 z-10">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <button onclick="changeSlide('car-3', 1, event)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-gold-500 hover:text-black text-white flex items-center justify-center transition-all md:opacity-0 group-hover/carousel:opacity-100 z-10">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" id="dots-car-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-gold-500 cursor-pointer" onclick="goToSlide('car-3', 0, event)"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-white/40 cursor-pointer" onclick="goToSlide('car-3', 1, event)"></span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Jeep Compass 2021</h3>
+                                <span class="text-xl font-extrabold text-gold-500">$50<span class="text-xs text-gray-400 font-normal">/día</span></span>
+                            </div>
+                            <p class="text-xs text-gray-400 mb-4">Color: Negro | Transmisión: Automática</p>
+                            
+                            <ul class="space-y-2 mb-6">
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Diseño Deportivo SUV Compacta</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Sistema Apple CarPlay y Android Auto</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Excelente rendimiento de combustible</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Espacioso baúl para equipaje</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <button onclick="seleccionarAutoEnCalculadora('Jeep Compass 2021', 50)" class="w-full text-center bg-transparent border border-gold-500 text-gold-500 font-semibold py-2.5 rounded-lg hover:bg-gold-500 hover:text-black transition-all text-sm">
+                                <i class="fa-solid fa-calculator mr-1"></i> Cotizar este Auto
+                            </button>
+                            <a href="https://wa.me/50376971000?text=Hola!%20Deseo%20conocer%20la%20disponibilidad%20del%20Jeep%20Compass%202021%20($50/Día)%20en%20Grupo%20Sosa%20Rental%20Car." target="_blank" class="block text-center bg-green-500 text-white font-semibold py-2.5 rounded-lg hover:bg-green-600 transition-colors text-sm flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Reservar WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehículo 4: Nissan Rogue 4x4  -->
+                <div class="car-item group bg-dark-card border border-dark-border rounded-2xl overflow-hidden hover:border-gold-500 transition-all duration-300 flex flex-col justify-between shadow-lg" data-name="nissan rogue 4x4" data-category="suv" data-price="45">
+                    <div class="relative overflow-hidden h-64 group/carousel bg-dark-deep" id="carousel-car-4">
+                        <img id="img-car-4" src="imagenes/nissan-frente.jpeg" onerror="handleImageError(this, 'car-4')" alt="Nissan Rogue 4x4" class="w-full h-full object-cover transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-gold-500 text-black text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md z-10">Todo Terreno 4x4</span>
+                        <span id="badge-car-4" class="absolute top-4 right-4 bg-black/80 text-gold-500 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-md z-10 border border-gold-500/30">Frente</span>
+
+                        <button onclick="changeSlide('car-4', -1, event)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-gold-500 hover:text-black text-white flex items-center justify-center transition-all md:opacity-0 group-hover/carousel:opacity-100 z-10">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <button onclick="changeSlide('car-4', 1, event)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-gold-500 hover:text-black text-white flex items-center justify-center transition-all md:opacity-0 group-hover/carousel:opacity-100 z-10">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" id="dots-car-4">
+                            <span class="w-2.5 h-2.5 rounded-full bg-gold-500 cursor-pointer" onclick="goToSlide('car-4', 0, event)"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-white/40 cursor-pointer" onclick="goToSlide('car-4', 1, event)"></span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Nissan Rogue 4x4</h3>
+                                <span class="text-xl font-extrabold text-gold-500">$45<span class="text-xs text-gray-400 font-normal">/día</span></span>
+                            </div>
+                            <p class="text-xs text-gray-400 mb-4">Doble Cabina | Transmisión: Automática / Mecánica</p>
+                            
+                            <ul class="space-y-2 mb-6">
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Tracción 4x4 para rutas exigentes</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Cama de carga amplia con Duraliner</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Cabina Doble confort para 5 pasajeros</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Potente motor diésel/gasolina</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <button onclick="seleccionarAutoEnCalculadora('Nissan Rogue 4x4', 45)" class="w-full text-center bg-transparent border border-gold-500 text-gold-500 font-semibold py-2.5 rounded-lg hover:bg-gold-500 hover:text-black transition-all text-sm">
+                                <i class="fa-solid fa-calculator mr-1"></i> Cotizar este Auto
+                            </button>
+                            <a href="https://wa.me/50376971000?text=Hola!%20Deseo%20conocer%20la%20disponibilidad%20del%20Nissan%20Rogue%204x4%20($45/Día)%20en%20Grupo%20Sosa%20Rental%20Car." target="_blank" class="block text-center bg-green-500 text-white font-semibold py-2.5 rounded-lg hover:bg-green-600 transition-colors text-sm flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Reservar WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehículo 5: Hyundai Tucson -->
+                <div class="car-item group bg-dark-card border border-dark-border rounded-2xl overflow-hidden hover:border-gold-500 transition-all duration-300 flex flex-col justify-between shadow-lg" data-name="hyundai tucson" data-category="suv" data-price="50">
+                    <div class="relative overflow-hidden h-64 group/carousel bg-dark-deep" id="carousel-car-5">
+                        <img id="img-car-5" src="imagenes/hyundai tucso-frente.jpeg" onerror="handleImageError(this, 'car-5')" alt="Hyundai Tucson" class="w-full h-full object-cover transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-gold-500 text-black text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-md z-10">Moderno & Confortable</span>
+                        <span id="badge-car-5" class="absolute top-4 right-4 bg-black/80 text-gold-500 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-md z-10 border border-gold-500/30">Frente</span>
+
+                        <button onclick="changeSlide('car-5', -1, event)" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-gold-500 hover:text-black text-white flex items-center justify-center transition-all md:opacity-0 group-hover/carousel:opacity-100 z-10">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <button onclick="changeSlide('car-5', 1, event)" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-gold-500 hover:text-black text-white flex items-center justify-center transition-all md:opacity-0 group-hover/carousel:opacity-100 z-10">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" id="dots-car-5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-gold-500 cursor-pointer" onclick="goToSlide('car-5', 0, event)"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-white/40 cursor-pointer" onclick="goToSlide('car-5', 1, event)"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-white/40 cursor-pointer" onclick="goToSlide('car-5', 2, event)"></span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Hyundai Tucson</h3>
+                                <span class="text-xl font-extrabold text-gold-500">$50<span class="text-xs text-gray-400 font-normal">/día</span></span>
+                            </div>
+                            <p class="text-xs text-gray-400 mb-4">SUV Elegante | Transmisión: Automática</p>
+                            
+                            <ul class="space-y-2 mb-6">
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Excelente manejo y gran economía de combustible</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Pantalla táctil multimedia y Bluetooth</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Cámara y sensores de reversa</li>
+                                <li class="text-sm text-gray-300 flex items-center gap-2"><i class="fa-solid fa-circle-check text-gold-500 text-xs"></i> Interior amplio para 5 pasajeros y equipaje</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <button onclick="seleccionarAutoEnCalculadora('Hyundai Tucson', 50)" class="w-full text-center bg-transparent border border-gold-500 text-gold-500 font-semibold py-2.5 rounded-lg hover:bg-gold-500 hover:text-black transition-all text-sm">
+                                <i class="fa-solid fa-calculator mr-1"></i> Cotizar este Auto
+                            </button>
+                            <a href="https://wa.me/50376971000?text=Hola!%20Deseo%20conocer%20la%20disponibilidad%20de%20la%20Hyundai%20Tucson%20($50/D%C3%ADa)%20en%20Grupo%20Sosa%20Rental%20Car." target="_blank" class="block text-center bg-green-500 text-white font-semibold py-2.5 rounded-lg hover:bg-green-600 transition-colors text-sm flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Reservar WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="calculadora" class="py-20 bg-dark relative border-t border-b border-dark-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-gold-500 text-xs font-bold uppercase tracking-widest">Calcula tu presupuesto al instante</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">
+                    Cotizador <span class="text-gold-500">Exprés</span>
+                </h2>
+                <div class="w-20 h-1 bg-gold-500 mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
+                <!-- Formulario de Calculadora -->
+                <div class="lg:col-span-7 bg-dark-card border border-dark-border rounded-2xl p-6 sm:p-8 shadow-xl">
+                    <form id="calculator-form" class="space-y-6" onsubmit="event.preventDefault(); updateQuote();">
+                        <!-- Selección de vehículo -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                                <i class="fa-solid fa-car text-gold-500 mr-1"></i> Selecciona Vehículo
+                            </label>
+                            <select id="calc-car" onchange="updateQuote()" class="w-full bg-dark/80 border border-dark-border text-white text-sm rounded-xl p-3 focus:outline-none focus:border-gold-500">
+                                <option value="50" data-name="BMW X3 2017 4x4">BMW X3 2017 4x4 ($50/día)</option>
+                                <option value="65" data-name="Ford Explorer 4x4">Ford Explorer 4x4 ($65/día)</option>
+                                <option value="50" data-name="Jeep Compass 2021">Jeep Compass 2021 ($50/día)</option>
+                                <option value="45" data-name="Nissan Rogue 4x4">Nissan Rogue 4x4 ($45/día)</option>
+                                <option value="50" data-name="Hyundai Tucson">Hyundai Tucson ($50/día)</option>
+                            </select>
+                        </div>
+
+                        <!-- Fechas -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                                    <i class="fa-solid fa-calendar-day text-gold-500 mr-1"></i> Fecha Entrega
+                                </label>
+                                <input type="date" id="calc-start" onchange="updateQuote()" class="w-full bg-dark/80 border border-dark-border text-white text-sm rounded-xl p-3 focus:outline-none focus:border-gold-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                                    <i class="fa-solid fa-calendar-check text-gold-500 mr-1"></i> Fecha Devolución
+                                </label>
+                                <input type="date" id="calc-end" onchange="updateQuote()" class="w-full bg-dark/80 border border-dark-border text-white text-sm rounded-xl p-3 focus:outline-none focus:border-gold-500">
+                            </div>
+                        </div>
+
+                        <!-- Lugar de entrega -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">
+                                <i class="fa-solid fa-location-dot text-gold-500 mr-1"></i> Lugar de Entrega / Recogida
+                            </label>
+                            <select id="calc-location" onchange="updateQuote()" class="w-full bg-dark/80 border border-dark-border text-white text-sm rounded-xl p-3 focus:outline-none focus:border-gold-500">
+                                <option value="0" data-name="San Salvador (Oficina / Hotel Central)">San Salvador (Sin recargo)</option>
+                                <option value="15" data-name="Aeropuerto Int. El Salvador (SAL)">Aeropuerto Int. El Salvador SAL (+$15 entrega/recogida)</option>
+                                <option value="10" data-name="Antiguo Cuscatlán / Santa Tecla">Antiguo Cuscatlán / Santa Tecla (+$10)</option>
+                                <option value="20" data-name="Playa El Tunco / Surf City">Playa El Tunco / Surf City (+$20)</option>
+                            </select>
+                        </div>
+
+                        <!-- Extras Opcionales -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-3">
+                                <i class="fa-solid fa-boxes-packing text-gold-500 mr-1"></i> Servicios Adicionales (Opcionales)
+                            </label>
+                            <div class="space-y-3">
+                                <label class="flex items-center justify-between p-3 bg-dark/40 border border-dark-border rounded-xl cursor-pointer hover:border-gold-500/50 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" id="extra-driver" onchange="updateQuote()" class="w-4 h-4 accent-gold-500 rounded">
+                                        <span class="text-sm font-medium text-gray-200">Conductor Adicional Autorizado</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-gold-500">+$20 / día</span>
+                                </label>
+                                <label class="flex items-center justify-between p-3 bg-dark/40 border border-dark-border rounded-xl cursor-pointer hover:border-gold-500/50 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" id="extra-seat" onchange="updateQuote()" class="w-4 h-4 accent-gold-500 rounded">
+                                        <span class="text-sm font-medium text-gray-200">Silla Infantil Para Auto</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-gold-500">+$20 / día</span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Resumen de Cotización -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-dark-card to-dark-deep border-2 border-gold-500/50 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                    <h3 class="text-xl font-bold text-white mb-6 border-b border-dark-border pb-3 flex items-center justify-between">
+                        <span>Resumen de Cotización</span>
+                        <i class="fa-solid fa-receipt text-gold-500"></i>
+                    </h3>
+
+                    <div class="space-y-4 text-sm text-gray-300 mb-8">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Vehículo:</span>
+                            <span id="summary-car" class="font-semibold text-white">BMW X3 2017 4x4</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Duración:</span>
+                            <span id="summary-days" class="font-semibold text-gold-500">3 días</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Tarifa Vehículo:</span>
+                            <span id="summary-car-cost" class="font-semibold text-white">$150.00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Servicios/Ubicación:</span>
+                            <span id="summary-extras-cost" class="font-semibold text-white">$0.00</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400 border-t border-dark-border/50 pt-2">
+                            <span>Subtotal:</span>
+                            <span id="summary-subtotal" class="font-medium text-gray-300">$0.00</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400">
+                            <span>IVA (13%):</span>
+                            <span id="summary-iva" class="font-medium text-gold-500">$0.00</span>
+                        </div>
+
+                        <div class="border-t border-dark-border pt-4 mt-4 flex justify-between items-baseline">
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-gray-400 block">Total con IVA Incluido</span>
+                                <span class="text-xs text-gray-500 font-light">(Sin depósito de garantía)</span>
+                            </div>
+                            <span id="summary-total" class="text-3xl font-black text-gold-500">$0.00</span>
+                        </div>
+                    </div>
+
+                    <a id="btn-whatsapp-quote" href="#" target="_blank" class="btn-shine w-full bg-green-500 hover:bg-green-600 text-white font-extrabold py-4 rounded-xl flex items-center justify-center gap-2 shadow-xl transition-all duration-300 text-center">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>Reservar Esta Cotización</span>
+                    </a>
+
+                    <p class="text-[10px] text-gray-400 text-center mt-4">
+                        *El depósito de garantía reembolsable se coordina al momento de la entrega del vehículo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="requisitos" class="py-20 bg-dark-deep">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold-500 text-xs font-bold uppercase tracking-widest">Sin letras pequeñas</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">
+                    Requisitos <span class="text-gold-500">de Alquiler</span>
+                </h2>
+                <div class="w-20 h-1 bg-gold-500 mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-dark-card border border-dark-border p-8 rounded-2xl hover:border-gold-500/50 transition-all">
+                    <div class="w-14 h-14 bg-gold-500/10 rounded-2xl border border-gold-500/30 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-id-card text-gold-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">1. Documentación</h3>
+                    <ul class="text-sm text-gray-300 space-y-2 font-light">
+                        <li>• Documento de Identidad (DUI o Pasaporte vigente).</li>
+                        <li>• Licencia de conducir vigente (Nacional o Internacional).</li>
+                    </ul>
+                </div>
+
+                <div class="bg-dark-card border border-dark-border p-8 rounded-2xl hover:border-gold-500/50 transition-all">
+                    <div class="w-14 h-14 bg-gold-500/10 rounded-2xl border border-gold-500/30 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-user-check text-gold-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">2. Edad Mínima</h3>
+                    <ul class="text-sm text-gray-300 space-y-2 font-light">
+                        <li>• Conductor de al menos 21 años de edad.</li>
+                        <li>• Mínimo 1 año de experiencia conduciendo.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-dark-card border border-dark-border p-8 rounded-2xl hover:border-gold-500/50 transition-all">
+                    <div class="w-14 h-14 bg-gold-500/10 rounded-2xl border border-gold-500/30 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-vault text-gold-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">3. Garantía</h3>
+                    <ul class="text-sm text-gray-300 space-y-2 font-light">
+                        <li>• Depósito de garantía retornable en efectivo o tarjeta.</li>
+                        <li>• Liquidación total al momento de recibir las llaves.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-20 bg-dark relative border-t border-dark-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-gold-500 text-xs font-bold uppercase tracking-widest">Atención personalizada</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-6">
+                        Estamos Listos Para <span class="text-gold-500">Atenderte</span>
+                    </h2>
+                    <p class="text-gray-300 font-light mb-8 leading-relaxed">
+                        ¿Llegas al Aeropuerto Internacional de El Salvador San Óscar Arnulfo Romero? Te entregamos el vehículo sin esperas apenas aterrices. Escríbenos directamente, visítanos o conócenos en nuestras redes sociales.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <a href="https://wa.me/50376971000?text=Hola,%20deseo%20informaci%C3%B3n%20sobre%20el%20alquiler%20de%20veh%C3%ADculos." target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-dark-card border border-gold-500/40 hover:border-gold-500 rounded-xl flex items-center justify-center flex-shrink-0 hover:scale-105 transition-all text-gold-500 hover:text-gold-400 shadow-md" title="Escribir por WhatsApp">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                            </a>
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase tracking-wider">WhatsApp Central</h4>
+                                <a href="https://wa.me/50376971000?text=Hola,%20deseo%20informaci%C3%B3n%20sobre%20el%20alquiler%20de%20veh%C3%ADculos." target="_blank" rel="noopener noreferrer" class="text-lg text-gold-500 hover:underline font-semibold">+503 7697-1000</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <a href="https://www.instagram.com/rentalcarsosa?utm_source=qr&igsh=YTV4b2d3Mms1NXNs" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-dark-card border border-gold-500/40 hover:border-gold-500 rounded-xl flex items-center justify-center flex-shrink-0 hover:scale-105 transition-all text-gold-500 hover:text-gold-400 shadow-md" title="Visitar perfil de Instagram">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </a>
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Instagram Oficial</h4>
+                                <a href="https://www.instagram.com/rentalcarsosa?utm_source=qr&igsh=YTV4b2d3Mms1NXNs" target="_blank" rel="noopener noreferrer" class="text-lg text-gold-500 hover:underline font-semibold inline-flex items-center gap-1">
+                                    @rentalcarsosa <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+                                </a>
+                                <p class="text-xs text-gray-400 mt-0.5">Mira fotos de nuestros vehículos entregados y opiniones de clientes.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-dark-card border border-gold-500/40 rounded-xl flex items-center justify-center flex-shrink-0 text-gold-500 shadow-md">
+                                <i class="fa-solid fa-location-dot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Ubicación</h4>
+                                <p class="text-gray-300 text-sm">San Salvador, El Salvador | Cobertura en Aeropuerto SAL y Surf City.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-dark-card border border-gold-500/40 rounded-xl flex items-center justify-center flex-shrink-0 text-gold-500 shadow-md">
+                                <i class="fa-solid fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Horario de Atención</h4>
+                                <p class="text-gray-300 text-sm">Lunes a Domingo: 24 horas (Servicio bajo reserva previa)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-dark-card border border-dark-border p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+                    <div class="text-center mb-6">
+                        <i class="fa-solid fa-paper-plane text-gold-500 text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold text-white">Consulta Rápida</h3>
+                        <p class="text-xs text-gray-400">Envíanos un mensaje directo</p>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); sendContactForm();" class="space-y-4">
+                        <div>
+                            <input type="text" id="contact-name" placeholder="Tu Nombre Completo" required class="w-full bg-dark/80 border border-dark-border text-white text-sm rounded-xl p-3 focus:outline-none focus:border-gold-500">
+                        </div>
+                        <div>
+                            <input type="tel" id="contact-phone" placeholder="Teléfono / WhatsApp" required class="w-full bg-dark/80 border border-dark-border text-white text-sm rounded-xl p-3 focus:outline-none focus:border-gold-500">
+                        </div>
+                        <div>
+                            <textarea id="contact-msg" rows="4" placeholder="¿En qué fechas o vehículo estás interesado?" required class="w-full bg-dark/80 border border-dark-border text-white text-sm rounded-xl p-3 focus:outline-none focus:border-gold-500"></textarea>
+                        </div>
+                        <button type="submit" class="btn-shine w-full bg-gold-500 hover:bg-gold-400 text-black font-extrabold py-3.5 rounded-xl transition-all shadow-lg">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark-deep border-t border-dark-border py-12 text-gray-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <span class="text-lg font-extrabold text-white">GRUPO SOSA <span class="text-gold-500">RENTAL CAR</span></span>
+                    <p class="text-xs text-gray-500 mt-1">© 2026 Grupo Sosa Rental Car El Salvador. Todos los derechos reservados.</p>
+                </div>
+
+                <div class="flex space-x-6 text-gray-400 text-xl items-center">
+                    <a href="https://wa.me/50376971000" target="_blank" rel="noopener noreferrer" class="hover:text-green-500 transition-colors" title="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/rentalcarsosa?utm_source=qr&igsh=YTV4b2d3Mms1NXNs" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500 transition-colors" title="Instagram @rentalcarsosa">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.instagram.com/rentalcarsosa?utm_source=qr&igsh=YTV4b2d3Mms1NXNs" target="_blank" rel="noopener noreferrer" class="hover:text-gold-500 transition-colors" title="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // CONFIGURACIÓN DE RUTAS DE IMÁGENES EXACTAS DE LA CARPETA "imagenes/"
+        const carData = {
+            'car-1': {
+                name: "BMW X3 2017 4x4",
+                slides: [
+                    { src: "imagenes/bmw-frente.jpeg", label: "Frente" },
+                    { src: "imagenes/bmw-trasera.jpeg", label: "Trasera" }
+                ],
+                currentIndex: 0
+            },
+            'car-2': {
+                name: "Ford Explorer 4x4",
+                slides: [
+                    { src: "imagenes/explorer-frente.jpeg", label: "Frente" },
+                    { src: "imagenes/explorer-trasera.jpeg", label: "Trasera" }
+                ],
+                currentIndex: 0
+            },
+            'car-3': {
+                name: "Jeep Compass 2021",
+                slides: [
+                    { src: "imagenes/jeep-interior.jpeg", label: "Interior" },
+                    { src: "imagenes/jeep-trasera.jpeg", label: "Trasera" }
+                ],
+                currentIndex: 0
+            },
+            'car-4': {
+                name: "Nissan Rogue 4x4",
+                slides: [
+                    { src: "imagenes/nissan-frente.jpeg", label: "Frente" },
+                    { src: "imagenes/nissan-tarsera.jpeg", label: "Trasera" }
+                ],
+                currentIndex: 0
+            },
+            'car-5': {
+                name: "Hyundai Tucson",
+                slides: [
+                    { src: "imagenes/hyundai tucso-frente.jpeg", label: "Frente" },
+                    { src: "imagenes/hyundaitucso-lateral.jpeg", label: "Lateral" },
+                    { src: "imagenes/hyundaitucso-trasera.jpeg", label: "Trasera" }
+                ],
+                currentIndex: 0
+            }
+        };
+
+        // Arreglo de extensiones para probar automáticamente (.jpeg, .jpg, .png, etc.)
+        const extensionsToTry = ['.jpeg', '.jpg', '.png', '.JPEG', '.JPG'];
+
+        function handleImageError(imgElement, carId) {
+            const car = carData[carId];
+            if (!car) return;
+
+            const currentSlide = car.slides[car.currentIndex];
+            const originalSrc = currentSlide.src;
+            
+            const lastDotIndex = originalSrc.lastIndexOf('.');
+            const base = lastDotIndex !== -1 ? originalSrc.substring(0, lastDotIndex) : originalSrc;
+
+            // Generar variaciones de nombre común
+            const baseVariants = [base];
+            const noSpace = base.replace(/\s+/g, '');
+            if (!baseVariants.includes(noSpace)) baseVariants.push(noSpace);
+            
+            if (base.includes('tucson')) baseVariants.push(base.replace('tucson', 'tucso'));
+            if (base.includes('tucso')) baseVariants.push(base.replace('tucso', 'tucson'));
+            if (base.includes('trasera')) baseVariants.push(base.replace('trasera', 'tarsera'));
+            if (base.includes('tarsera')) baseVariants.push(base.replace('tarsera', 'trasera'));
+
+            // Combinar nombres con todas las extensiones posibles
+            const candidates = [];
+            baseVariants.forEach(b => {
+                extensionsToTry.forEach(ext => {
+                    const path = b + ext;
+                    if (!candidates.includes(path)) candidates.push(path);
+                });
+            });
+
+            let currentTryIndex = parseInt(imgElement.dataset.tryIndex || "0");
+
+            if (currentTryIndex < candidates.length) {
+                imgElement.dataset.tryIndex = currentTryIndex + 1;
+                imgElement.src = candidates[currentTryIndex];
+                return;
+            }
+
+            // Si falla en todas las variaciones y extensiones, muestra la tarjeta informativa SVG
+            imgElement.onerror = null;
+            imgElement.src = getPlaceholderSVG(originalSrc);
+        }
+
+        function getPlaceholderSVG(filename) {
+            const cleanName = filename ? filename.replace('imagenes/', '') : 'foto.jpg';
+            const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" fill="none">
+                <rect width="800" height="500" fill="#141414"/>
+                <rect x="25" y="25" width="750" height="450" rx="16" stroke="#d4af37" stroke-width="2" stroke-dasharray="8 8" opacity="0.4"/>
+                <circle cx="400" cy="190" r="45" fill="#1e1e1e" stroke="#d4af37" stroke-width="2"/>
+                <path d="M380 182 C380 178 384 174 388 174 H412 C416 174 420 178 420 182 V186 H432 C436.4 186 440 189.6 440 194 V214 C440 218.4 436.4 222 432 222 H368 C363.6 222 360 218.4 360 214 V194 C360 189.6 363.6 186 368 186 H380 V182 Z" stroke="#d4af37" stroke-width="2.5" fill="none"/>
+                <circle cx="400" cy="204" r="10" stroke="#d4af37" stroke-width="2.5" fill="none"/>
+                <text x="400" y="295" font-family="'Poppins', sans-serif" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">Imagen del Vehículo</text>
+                <text x="400" y="340" font-family="monospace" font-size="12" fill="#71717a" text-anchor="middle">imagenes/${cleanName}</text>
+            </svg>`;
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgContent);
+        }
+
+        function changeSlide(carId, direction, event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const car = carData[carId];
+            if (!car) return;
+            car.currentIndex = (car.currentIndex + direction + car.slides.length) % car.slides.length;
+            renderCarousel(carId);
+        }
+
+        function goToSlide(carId, index, event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const car = carData[carId];
+            if (!car) return;
+            car.currentIndex = index;
+            renderCarousel(carId);
+        }
+
+        function renderCarousel(carId) {
+            const car = carData[carId];
+            if (!car) return;
+
+            const currentSlide = car.slides[car.currentIndex];
+            
+            const imgEl = document.getElementById(`img-${carId}`);
+            const badgeEl = document.getElementById(`badge-${carId}`);
+            
+            if (imgEl) {
+                imgEl.dataset.tryIndex = "0";
+                imgEl.onerror = function() {
+                    handleImageError(this, carId);
+                };
+                imgEl.src = currentSlide.src;
+            }
+            if (badgeEl) badgeEl.textContent = currentSlide.label || 'Foto';
+
+            // Genera automáticamente los puntos indicadores del carrusel
+            const dotsContainer = document.getElementById(`dots-${carId}`);
+            if (dotsContainer) {
+                dotsContainer.innerHTML = car.slides.map((_, idx) => `
+                    <span class="${idx === car.currentIndex ? 'w-2.5 h-2.5 rounded-full bg-gold-500 cursor-pointer' : 'w-2.5 h-2.5 rounded-full bg-white/40 cursor-pointer'}" onclick="goToSlide('${carId}', ${idx}, event)"></span>
+                `).join('');
+            }
+        }
+
+        function seleccionarAutoEnCalculadora(nombreAuto, precio) {
+            const selectEl = document.getElementById('calc-car');
+            if (selectEl) {
+                for (let i = 0; i < selectEl.options.length; i++) {
+                    if (selectEl.options[i].text.includes(nombreAuto) || selectEl.options[i].value == precio) {
+                        selectEl.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            updateQuote();
+            const calcSec = document.getElementById('calculadora');
+            if (calcSec) calcSec.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateQuote() {
+            const carSelect = document.getElementById('calc-car');
+            if (!carSelect) return;
+
+            const carPrice = parseFloat(carSelect.value);
+            const carName = carSelect.options[carSelect.selectedIndex].getAttribute('data-name');
+
+            const startVal = document.getElementById('calc-start').value;
+            const endVal = document.getElementById('calc-end').value;
+
+            let days = 1;
+            if (startVal && endVal) {
+                const startDate = new Date(startVal);
+                const endDate = new Date(endVal);
+                const diffTime = endDate - startDate;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                days = diffDays > 0 ? diffDays : 1;
+            }
+
+            const locSelect = document.getElementById('calc-location');
+            const locFee = parseFloat(locSelect.value);
+            const locName = locSelect.options[locSelect.selectedIndex].getAttribute('data-name');
+
+            let extrasPerDay = 0;
+            let extrasList = [];
+
+            const driverEl = document.getElementById('extra-driver');
+            if (driverEl && driverEl.checked) {
+                extrasPerDay += 20;
+                extrasList.push('Conductor Adicional ($20/día)');
+            }
+            const seatEl = document.getElementById('extra-seat');
+            if (seatEl && seatEl.checked) {
+                extrasPerDay += 20;
+                extrasList.push('Silla Bebé ($20/día)');
+            }
+
+            const carTotal = carPrice * days;
+            const extrasTotal = (extrasPerDay * days) + locFee;
+            const subtotal = carTotal + extrasTotal;
+            const ivaAmount = subtotal * 0.13;
+            const grandTotal = subtotal * 1.13;
+
+            document.getElementById('summary-car').textContent = carName;
+            document.getElementById('summary-days').textContent = `${days} día(s)`;
+            document.getElementById('summary-car-cost').textContent = `$${carTotal.toFixed(2)}`;
+            document.getElementById('summary-extras-cost').textContent = `$${extrasTotal.toFixed(2)}`;
+            
+            const subtotalEl = document.getElementById('summary-subtotal');
+            if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            
+            const ivaEl = document.getElementById('summary-iva');
+            if (ivaEl) ivaEl.textContent = `$${ivaAmount.toFixed(2)}`;
+
+            document.getElementById('summary-total').textContent = `$${grandTotal.toFixed(2)}`;
+
+            const message = `Hola Grupo Sosa Rental Car, deseo reservar la siguiente cotización:\n\n` +
+                `🚗 *Vehículo:* ${carName}\n` +
+                `📅 *Fechas:* ${startVal} al ${endVal} (${days} días)\n` +
+                `📍 *Entrega:* ${locName}\n` +
+                `✨ *Extras:* ${extrasList.length > 0 ? extrasList.join(', ') : 'Ninguno'}\n` +
+                `💵 *Subtotal:* $${subtotal.toFixed(2)}\n` +
+                `🧾 *IVA (13%):* $${ivaAmount.toFixed(2)}\n` +
+                `💰 *Total (IVA Incluido):* $${grandTotal.toFixed(2)}\n\n` +
+                `¿Tienen disponibilidad para estas fechas?`;
+
+            const waBtn = document.getElementById('btn-whatsapp-quote');
+            if (waBtn) waBtn.href = `https://wa.me/50376971000?text=${encodeURIComponent(message)}`;
+        }
+
+        function sendContactForm() {
+            const name = document.getElementById('contact-name').value;
+            const phone = document.getElementById('contact-phone').value;
+            const msg = document.getElementById('contact-msg').value;
+
+            const text = `Hola Grupo Sosa Rental Car, mi nombre es ${name} (Tel: ${phone}).\n\nConsulta: ${msg}`;
+            window.open(`https://wa.me/50376971000?text=${encodeURIComponent(text)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
